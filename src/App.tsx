@@ -30,14 +30,14 @@ const AppContent: React.FC = () => {
     <div className="relative font-sans text-emerald-dark dark:text-ivory selection:bg-gold/30">
       <CursorTrail />
       <WelcomeScreen />
-      
+
       <main className="relative z-10 w-full min-h-screen">
         <ParticleOverlay />
         <HeroSection />
         <div className="relative">
           {/* Transition connecting lines */}
           <div className="absolute top-0 bottom-0 left-1/2 w-[1px] bg-gradient-to-b from-transparent via-gold/30 to-transparent -translate-x-1/2 pointer-events-none hidden md:block"></div>
-          
+
           <InvitationLetter />
           <EventCards />
           <CountdownTimer />
