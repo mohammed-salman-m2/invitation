@@ -13,11 +13,11 @@ export const Footer: React.FC = () => {
 
       <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center text-center">
         <motion.div
-           initial={{ opacity: 0, scale: 0.9 }}
-           whileInView={{ opacity: 1, scale: 1 }}
-           viewport={{ once: true }}
-           transition={{ duration: 1.5 }}
-           className="w-16 h-16 mb-8 text-gold opacity-60"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.5 }}
+          className="w-16 h-16 mb-8 text-gold opacity-60"
         >
           {/* Subtle floral or geometric SVG */}
           <svg viewBox="0 0 100 100" fill="currentColor">
@@ -33,13 +33,13 @@ export const Footer: React.FC = () => {
             "{t.quote}"
           </p>
         </div>
-        
+
         <p className="text-sm opacity-50 uppercase tracking-[0.2em] mt-8 font-medium">
-          Mohammed Salih <span className="text-rose-500 mx-1">❤️</span> Shifna
+          Mohammed Salih <span className="text-rose-500 mx-1">💞</span> Shifna
         </p>
 
         <div className="mt-20 pb-10 text-[10px] uppercase tracking-widest opacity-30">
-          Created with ❤️
+          Created with 💝
         </div>
       </div>
     </footer>

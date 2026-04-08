@@ -8,7 +8,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        ivory: '#fdfbf7',
+        ivory: '#000000ff',
         maroon: '#7B1818',
         'emerald-dark': '#064e3b',
         'forest-night': '#022c22',
