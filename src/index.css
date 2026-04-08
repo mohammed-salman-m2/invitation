@@ -3,14 +3,15 @@
 
 @layer base {
   body {
-    @apply bg-ivory text-[#333333] transition-colors duration-500 ease-in-out relative;
-    /* Subtle geometric mandala pattern watermark */
+    /* Light Mode Default */
+    @apply bg-ivory text-emerald-dark transition-colors duration-500 ease-in-out relative;
+    /* Your background image pattern */
     background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
-  
-  .dark body {
-    /* Hard override to prevent dark mode breaking the physical paper look */
-    @apply bg-ivory text-[#333333]; 
+
+  /* CORRECTED: Apply dark styles when <html> has the 'dark' class */
+  html.dark body {
+    @apply bg-forest-night text-ivory;
   }
 }
 
@@ -18,21 +19,27 @@
   .glassmorphism {
     @apply bg-white/80 backdrop-blur-md shadow-md border border-black/5 rounded-xl;
   }
+
   .dark .glassmorphism {
-    @apply bg-white/80 backdrop-blur-md shadow-md border border-black/5 rounded-xl text-black;
+    @apply bg-black/30 text-ivory backdrop-blur-md shadow-lg border border-gold/20 rounded-xl;
   }
-  
+
   .glass-panel {
-    @apply bg-white border border-gold/30 shadow-[0_4px_20px_rgba(0,0,0,0.05)] rounded-none;
+    /* BEFORE: shadow-[0_4px_20px_rgba(0,0,0,0.05)] */
+    /* AFTER: Use a standard shadow utility and a color/opacity modifier */
+    @apply bg-white border border-gold/30 shadow-lg shadow-black/5 rounded-none;
   }
+
   .dark .glass-panel {
-    @apply bg-white border border-gold/30 shadow-[0_4px_20px_rgba(0,0,0,0.05)] rounded-none text-black;
+    /* BEFORE: shadow-[0_4px_20px_rgba(0,0,0,0.1)] */
+    /* AFTER: shadow-black/10 is equivalent to rgba(0,0,0,0.1) */
+    @apply bg-emerald-dark border border-gold/30 shadow-lg shadow-black/10 rounded-none text-ivory;
   }
 
   .text-glow {
     text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
   }
-  
+
   .border-glow {
     box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
   }
@@ -42,15 +49,18 @@
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
-  background: transparent; 
+  background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: rgba(212, 175, 55, 0.3); 
+  background: rgba(212, 175, 55, 0.3);
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(212, 175, 55, 0.6); 
+  background: rgba(212, 175, 55, 0.6);
 }
 
 html {

@@ -51,8 +51,8 @@ END:VCALENDAR`;
   return (
     <section className="py-12 px-4 max-w-4xl mx-auto flex flex-col items-center relative">
       <div className="flex flex-wrap justify-center gap-4 md:gap-8 cursor-pointer">
-        
-        <motion.button 
+
+        <motion.button
           whileHover={{ scale: 1.05, y: -5 }}
           whileTap={{ scale: 0.95 }}
           onClick={handleCalendar}
@@ -64,7 +64,7 @@ END:VCALENDAR`;
           <span className="text-xs font-medium text-center">{t.actions.calendar}</span>
         </motion.button>
 
-        <motion.a 
+        <motion.a
           href="/invitation.jpg" // Note: Put invitation.jpg in public/
           download="Invitation-Mohammed-Salih.jpg"
           whileHover={{ scale: 1.05, y: -5 }}
@@ -77,7 +77,7 @@ END:VCALENDAR`;
           <span className="text-xs font-medium text-center">{t.actions.download}</span>
         </motion.a>
 
-        <motion.button 
+        <motion.button
           whileHover={{ scale: 1.05, y: -5 }}
           whileTap={{ scale: 0.95 }}
           onClick={handleShare}
@@ -93,7 +93,7 @@ END:VCALENDAR`;
 
       <AnimatePresence>
         {showToast && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
