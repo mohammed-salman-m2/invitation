@@ -1,3 +1,5 @@
+// src/components/ActionButtons.tsx (Modified for direct Google Calendar link)
+
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CalendarDays, Download, Share2, Check } from 'lucide-react';
@@ -6,6 +8,21 @@ import { useAppContext } from '../AppContext';
 export const ActionButtons: React.FC = () => {
   const { t } = useAppContext();
   const [showToast, setShowToast] = useState(false);
+
+  // --- GOOGLE CALENDAR EVENT DETAILS ---
+  // The event time is converted to UTC (IST is UTC+5:30) for the link to work globally.
+  // Start: 11:30 IST -> 06:00 UTC
+  // End:   15:00 IST -> 09:30 UTC
+  const eventDetails = {
+    title: 'Wedding: Mohammed Salih & Shifna',
+    description: 'You are invited to the Nikah and Wedding Reception of Mohammed Salih & Shifna.',
+    location: 'Rahmath Community Hall, Moonnaini',
+    startTimeUTC: '20260411T060000Z',
+    endTimeUTC: '20260411T093000Z',
+  };
+
+  const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventDetails.title)}&dates=${eventDetails.startTimeUTC}/${eventDetails.endTimeUTC}&details=${encodeURIComponent(eventDetails.description)}&location=${encodeURIComponent(eventDetails.location)}`;
+  // -------------------------------------
 
   const handleShare = async () => {
     if (navigator.share) {
@@ -25,47 +42,28 @@ export const ActionButtons: React.FC = () => {
     }
   };
 
-  const handleCalendar = () => {
-    // Dummy ICS download trigger
-    const icsContent = `BEGIN:VCALENDAR
-VERSION:2.0
-BEGIN:VEVENT
-SUMMARY:Wedding: Mohammed Salih & Shifna
-DTSTART;TZID=Asia/Kolkata:20260411T113000
-DTEND;TZID=Asia/Kolkata:20260411T150000
-LOCATION:Rahmath Community Hall, Moonnaini
-DESCRIPTION:Nikah and Wedding Reception
-END:VEVENT
-END:VCALENDAR`;
-
-    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', 'wedding-salih-shifna.ics');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
   return (
     <section className="py-12 px-4 max-w-4xl mx-auto flex flex-col items-center relative">
       <div className="flex flex-wrap justify-center gap-4 md:gap-8 cursor-pointer">
 
-        <motion.button
+        {/* --- MODIFIED CALENDAR BUTTON (NOW A DIRECT LINK) --- */}
+        <motion.a
+          href={googleCalendarUrl}
+          target="_blank"
+          rel="noopener noreferrer"
           whileHover={{ scale: 1.05, y: -5 }}
           whileTap={{ scale: 0.95 }}
-          onClick={handleCalendar}
           className="flex flex-col items-center gap-3 p-4 w-32 glassmorphism rounded-xl hover:border-gold transition-colors group"
         >
           <div className="bg-gold/10 p-4 rounded-full group-hover:bg-gold/20 transition-colors">
             <CalendarDays className="text-gold" />
           </div>
           <span className="text-xs font-medium text-center">{t.actions.calendar}</span>
-        </motion.button>
+        </motion.a>
+        {/* ---------------------------------------------------- */}
 
         <motion.a
-          href="/invitation.jpg" // Note: Put invitation.jpg in public/
+          href="/invitation.jpg"
           download="Invitation-Mohammed-Salih.jpg"
           whileHover={{ scale: 1.05, y: -5 }}
           whileTap={{ scale: 0.95 }}
